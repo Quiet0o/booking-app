@@ -1,0 +1,57 @@
+version: "3.8"
+services: 
+  app:
+    container_name: app
+    build:
+      context: .
+      target: dev
+      dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_CLIENTVAR: "clientvar"
+    working_dir: /app
+    restart: always
+    command: yarn dev
+    environment:
+      - NODE_ENV=development 
+      - DATABASE_URL=${DATABASE_URL}
+      # Uncomment the next line if you’re using Windows
+      - WATCHPACK_POLLING=true
+    volumes:
+      - type: bind
+        source: .
+        target: /app
+        consistency: delegated
+      - type: volume
+        source: node_modules
+        target: /app/node_modules
+      - type: volume
+        source: next
+        target: /app/.next
+    ports:
+      - 3000:3000
+    x-develop:
+      watch:
+        - ./
+
+  database:
+    container_name: database
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+    volumes:
+      - my-db:/var/lib/mysql
+
+
+# Volume for MySQL data persistence
+volumes:
+  my-db: ~
+  node_modules:
+  next:
