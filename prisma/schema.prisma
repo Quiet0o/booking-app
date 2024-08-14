@@ -12,3 +12,96 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  user_id      Int       @id @default(autoincrement())
+  username     String    @unique
+  passwordHash String
+  email        String    @unique
+  firstName    String?
+  lastName     String?
+  phoneNumber  String?
+  dateJoined   DateTime  @default(now())
+  rooms        Room[]    @relation("RoomOwner")
+  bookings     Booking[] @relation("Renter")
+  reviews      Review[]
+  travelHistory TravelHistory[]
+  sentMessages Message[] @relation("SentMessages")
+  receivedMessages Message[] @relation("ReceivedMessages")
+}
+
+model Room {
+  room_id      Int       @id @default(autoincrement())
+  owner        User      @relation("RoomOwner", fields: [ownerId], references: [user_id])
+  ownerId      Int
+  title        String
+  description  String?
+  location     String
+  pricePerNight Decimal  @default(0.00)
+  availableFrom DateTime?
+  availableTo  DateTime?
+  createdAt    DateTime  @default(now())
+  bookings     Booking[]
+  reviews      Review[]
+  photos       RoomPhoto[]
+  travelHistory TravelHistory[]
+}
+
+model Booking {
+  booking_id  Int       @id @default(autoincrement())
+  room        Room      @relation(fields: [roomId], references: [room_id])
+  roomId      Int
+  renter      User      @relation("Renter", fields: [renterId], references: [user_id])
+  renterId    Int
+  startDate   DateTime
+  endDate     DateTime
+  totalPrice  Decimal   @default(0.00)
+  createdAt   DateTime  @default(now())
+  travelHistory TravelHistory?
+}
+
+model Review {
+  review_id   Int       @id @default(autoincrement())
+  room        Room      @relation(fields: [roomId], references: [room_id])
+  roomId      Int
+  reviewer    User      @relation(fields: [reviewerId], references: [user_id])
+  reviewerId  Int
+  rating      Int
+  comment     String?
+  createdAt   DateTime  @default(now())
+}
+
+model RoomPhoto {
+  photo_id    Int       @id @default(autoincrement())
+  room        Room      @relation(fields: [roomId], references: [room_id])
+  roomId      Int
+  photoUrl    String
+  uploadedAt  DateTime  @default(now())
+}
+
+model TravelHistory {
+  history_id  Int       @id @default(autoincrement())
+  user        User      @relation(fields: [userId], references: [user_id])
+  userId      Int
+  room        Room      @relation(fields: [roomId], references: [room_id])
+  roomId      Int
+  booking     Booking   @relation(fields: [bookingId], references: [booking_id])
+  bookingId   Int       @unique
+  startDate   DateTime
+  endDate     DateTime
+  totalPrice  Decimal   @default(0.00)
+  ratingGiven Int?
+  reviewGiven String?
+  createdAt   DateTime  @default(now())
+}
+
+model Message {
+  message_id  Int       @id @default(autoincrement())
+  sender      User      @relation("SentMessages", fields: [senderId], references: [user_id])
+  senderId    Int
+  receiver    User      @relation("ReceivedMessages", fields: [receiverId], references: [user_id])
+  receiverId  Int
+  content     String
+  sentAt      DateTime  @default(now())
+  isRead      Boolean   @default(false)
+}
