@@ -13,9 +13,74 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Separator } from "@/components/ui/separator";
+import { Modal } from "@/components/ui/modals/modal";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isEditOpen, setIsEditOpen] = useState(false);
+
+  function createLoginModal() {
+    return (
+      <>
+        <Modal isOpen={isEditOpen} setIsOpen={setIsEditOpen} title="">
+          <Card className="mx-auto max-w-sm">
+            <CardHeader>
+              <CardTitle className="text-2xl">Login</CardTitle>
+              <CardDescription>
+                Enter your email below to login to your account
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="grid gap-4">
+                <div className="grid gap-2">
+                  <Label htmlFor="email">Email</Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    placeholder="m@example.com"
+                    required
+                  />
+                </div>
+                <div className="grid gap-2">
+                  <div className="flex items-center">
+                    <Label htmlFor="password">Password</Label>
+                    <Link
+                      href="#"
+                      className="ml-auto inline-block text-sm underline"
+                    >
+                      Forgot your password?
+                    </Link>
+                  </div>
+                  <Input id="password" type="password" required />
+                </div>
+                <Button type="submit" variant="destructive" className="w-full">
+                  Login
+                </Button>
+                <Button variant="outline" className="w-full">
+                  Login with Google
+                </Button>
+              </div>
+              <div className="mt-4 text-center text-sm">
+                Don&apos;t have an account?{" "}
+                <Link href="#" className="underline">
+                  Sign up
+                </Link>
+              </div>
+            </CardContent>
+          </Card>
+        </Modal>
+      </>
+    );
+  }
 
   useEffect(() => {
     const handleScroll = () => {
@@ -39,11 +104,10 @@ export default function Navbar() {
         isScrolled ? "shadow-md pt-5 pb-5 min-h-[7.5rem]" : "min-h-[7rem]"
       }`}
     >
+      {createLoginModal()}
+
       {/* Brand Link */}
-      <Link
-        href="/"
-        className="hidden sm:flex items-center gap-2 pl-4 md:pl-6"
-      >
+      <Link href="/" className="hidden sm:flex items-center gap-2 pl-4 md:pl-6">
         <span className="text-2xl font-semibold text-gray-800">BookApp</span>
       </Link>
 
@@ -84,7 +148,11 @@ export default function Navbar() {
           ) : (
             <></>
           )}
-          {isScrolled ? <Link href="#">Dowolny tydzień</Link> : <></>}
+          {isScrolled ? (
+            <Button variant="ghost">Dowolny tydzień</Button>
+          ) : (
+            <></>
+          )}
           <Separator orientation="vertical" />
           <Link href="#">
             {!isScrolled ? "Kto" : "Dodaj gości"}
@@ -102,9 +170,8 @@ export default function Navbar() {
           </Button>
         </div>
       </nav>
-
-      {/* Right Section */}
       <div className="hidden sm:flex items-center gap-4 pr-4 md:pr-6">
+        <Button variant="link">Wynajmij swój dom na Airbnb</Button>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" size="icon" className="rounded-full">
@@ -115,7 +182,16 @@ export default function Navbar() {
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>My Account</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Settings</DropdownMenuItem>
+            <DropdownMenuItem>
+              <button
+                onClick={() => {
+                  setIsEditOpen(true);
+                }}
+                className="w-full justify-start flex rounded-md p-2 transition-all duration-75 hover:bg-neutral-100"
+              >
+                Login
+              </button>
+            </DropdownMenuItem>
             <DropdownMenuItem>Support</DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem>Logout</DropdownMenuItem>
