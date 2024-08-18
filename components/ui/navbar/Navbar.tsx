@@ -55,6 +55,7 @@ export default function Navbar() {
         <div className="flex items-center gap-6 sm:gap-8 rounded-full border px-4 sm:px-6 py-2 sm:py-3 shadow-md">
           <Link href="/">
             {!isScrolled ? 'Gdzie' : 'Gdziekolwiek'}
+            {!isScrolled && <br />}
             {!isScrolled && (
               <span className="text-xs sm:text-sm font-semibold text-gray-500">
                 wyszukaj kierunki
@@ -85,6 +86,7 @@ export default function Navbar() {
           <Separator orientation="vertical" />
           <Link href="/">
             {!isScrolled ? 'Kto' : 'Dodaj gości'}
+            {!isScrolled && <br />}
             {!isScrolled && (
               <span className="text-xs sm:text-sm font-semibold text-gray-500">
                 Dodaj gości

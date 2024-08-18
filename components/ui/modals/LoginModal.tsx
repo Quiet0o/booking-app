@@ -1,4 +1,4 @@
-import { Modal } from '@/components/ui/modals/modal';
+import { Modal } from '@/components/ui/modals/Modal';
 import {
   Card,
   CardContent,
