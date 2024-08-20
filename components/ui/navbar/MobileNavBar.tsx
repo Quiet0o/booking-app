@@ -1,8 +1,8 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Heart, Search, User } from 'lucide-react';
+import { Heart, Menu, Search, User } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -21,11 +21,22 @@ const MobileNavBar: React.FC<MobileNavBarProps> = ({
   setLoginModalOpen,
   setRegisterModalOpen,
 }) => {
+  const viewportHeight = window.innerHeight;
+
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-10 bg-white border-t md:hidden">
-      <div className="flex flex-col h-screen">
+    <nav
+      style={{ height: `${viewportHeight}px` }}
+      className="fixed bottom-0 left-0 right-0 z-10 bg-white border-t md:hidden"
+    >
+      <div
+        className="flex flex-col"
+        style={{ minHeight: '100vh', overflow: 'auto' }}
+      >
+        {/* Search Section */}
         <div className="flex-grow flex flex-col px-4 pt-4 border-b">
-          <div className="flex items-center rounded-full shadow-md bg-white p-4">
+          {' '}
+          {/* Adjust pt for top padding */}
+          <div className="flex items-center rounded-lg shadow-md bg-white p-4">
             <Button variant="ghost" size="icon" className="mr-2">
               <Search className="h-6 w-6" />
             </Button>
@@ -41,6 +52,8 @@ const MobileNavBar: React.FC<MobileNavBarProps> = ({
             </div>
           </div>
         </div>
+
+        {/* User Menu */}
         <div className="flex justify-between items-center px-6 py-2 border-t">
           <Button variant="ghost" size="icon">
             <Search className="h-6 w-6" />
