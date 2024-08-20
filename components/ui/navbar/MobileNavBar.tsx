@@ -1,5 +1,6 @@
 'use client';
 
+import React, { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Heart, Search, User } from 'lucide-react';
 import {
@@ -20,7 +21,19 @@ const MobileNavBar: React.FC<MobileNavBarProps> = ({
   setLoginModalOpen,
   setRegisterModalOpen,
 }) => {
-  const viewportHeight = window.innerHeight;
+  const [viewportHeight, setViewportHeight] = useState<number>(0);
+
+  useEffect(() => {
+    // Update viewportHeight when the component mounts and on window resize
+    const updateViewportHeight = () => {
+      setViewportHeight(window.innerHeight);
+    };
+
+    updateViewportHeight(); // Set initial value
+    window.addEventListener('resize', updateViewportHeight); // Update on resize
+
+    return () => window.removeEventListener('resize', updateViewportHeight); // Cleanup listener
+  }, []);
 
   return (
     <nav
@@ -33,8 +46,6 @@ const MobileNavBar: React.FC<MobileNavBarProps> = ({
       >
         {/* Search Section */}
         <div className="flex-grow flex flex-col px-4 pt-4 border-b">
-          {' '}
-          {/* Adjust pt for top padding */}
           <div className="flex items-center rounded-lg shadow-md bg-white p-4">
             <Button variant="ghost" size="icon" className="mr-2">
               <Search className="h-6 w-6" />
