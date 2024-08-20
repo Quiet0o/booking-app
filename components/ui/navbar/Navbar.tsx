@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Menu, Search } from 'lucide-react'; // Import additional icons
+import { Menu, Search } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -18,7 +18,7 @@ import Image from 'next/image';
 import { AuthModals } from '@/components/ui/modals/AuthModals';
 import MobileNavBar from './MobileNavBar';
 
-const TopNavbar = ({
+const Navbar = ({
   setLoginModalOpen,
   setRegisterModalOpen,
   isScrolled,
@@ -38,14 +38,14 @@ const TopNavbar = ({
           {/* Logo (hidden on mobile) */}
           <Image
             alt="airbnb logo"
-            height={32} // Adjust height
-            width={102} // Adjust width
+            height={32}
+            width={102}
             src="/images/logo.png"
             className="hidden md:block cursor-pointer"
           />
 
-          {/* Search Card */}
-          <Card className="w-full md:w-auto cursor-pointer rounded-full border">
+          {/* Search Card for desktop */}
+          <Card className="w-full md:w-auto cursor-pointer rounded-full border hidden md:flex">
             <CardContent className="p-1 flex items-center justify-between">
               <div className="text-sm font-semibold px-4">Anywhere</div>
               <Separator
@@ -115,7 +115,7 @@ const TopNavbar = ({
   </header>
 );
 
-const Navbar = () => {
+function MainLayout() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isLoginModalOpen, setLoginModalOpen] = useState<boolean>(false);
   const [isRegisterModalOpen, setRegisterModalOpen] = useState<boolean>(false);
@@ -134,7 +134,7 @@ const Navbar = () => {
 
   return (
     <>
-      <TopNavbar
+      <Navbar
         setLoginModalOpen={setLoginModalOpen}
         setRegisterModalOpen={setRegisterModalOpen}
         isScrolled={isScrolled}
@@ -151,6 +151,6 @@ const Navbar = () => {
       />
     </>
   );
-};
+}
 
-export default Navbar;
+export default MainLayout;
