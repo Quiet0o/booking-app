@@ -134,15 +134,22 @@ function Navbar() {
 
   return (
     <>
-      <TopNavbar
-        setLoginModalOpen={setLoginModalOpen}
-        setRegisterModalOpen={setRegisterModalOpen}
-        isScrolled={isScrolled}
-      />
-      <MobileNavBar
-        setLoginModalOpen={setLoginModalOpen}
-        setRegisterModalOpen={setRegisterModalOpen}
-      />
+      <div className="hidden md:block">
+        <TopNavbar
+          setLoginModalOpen={setLoginModalOpen}
+          setRegisterModalOpen={setRegisterModalOpen}
+          isScrolled={isScrolled}
+        />
+      </div>
+
+      {/* Show MobileNavBar only on mobile */}
+      <div className="block md:hidden">
+        <MobileNavBar
+          setLoginModalOpen={setLoginModalOpen}
+          setRegisterModalOpen={setRegisterModalOpen}
+        />
+      </div>
+
       <AuthModals
         isLoginModalOpen={isLoginModalOpen}
         setLoginModalOpen={setLoginModalOpen}

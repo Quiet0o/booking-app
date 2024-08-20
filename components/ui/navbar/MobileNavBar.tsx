@@ -24,10 +24,10 @@ const MobileNavBar: React.FC<MobileNavBarProps> = ({
   return (
     <>
       <div
-        className="fixed top-0 left-0 right-0 bg-white z-50"
+        className="fixed top-0 left-0 right-0  z-50"
         style={{ paddingTop: 'env(safe-area-inset-top)' }}
       >
-        <div className="flex items-center rounded-full shadow-md p-4 mx-4">
+        <div className="flex items-center rounded-full shadow-md p-4 pt-5 mx-4 mt-2">
           <Button variant="ghost" size="icon" className="mr-2">
             <Search className="h-6 w-6" />
           </Button>
