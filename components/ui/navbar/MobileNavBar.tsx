@@ -47,17 +47,29 @@ const MobileNavBar: React.FC<MobileNavBarProps> = ({
       {/* Fixed Bottom Section */}
       <div className="fixed bottom-0 left-0 right-0 bg-white border-t z-50">
         <div className="flex justify-around items-center px-6 py-2">
-          <Button variant="ghost" size="icon" className="flex flex-col items-center hover:bg-inherit">
+          <Button
+            variant="ghost"
+            size="icon"
+            className="flex flex-col items-center hover:bg-inherit"
+          >
             <Search className="h-6 w-6" />
             <span className="text-xs mt-1">Search</span>
           </Button>
-          <Button variant="ghost" size="icon" className="flex flex-col items-center hover:bg-inherit">
+          <Button
+            variant="ghost"
+            size="icon"
+            className="flex flex-col items-center hover:bg-inherit"
+          >
             <Heart className="h-6 w-6" />
             <span className="text-xs mt-1">Favorites</span>
           </Button>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="icon" className="flex flex-col items-center hover:bg-inherit">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="flex flex-col items-center hover:bg-inherit"
+              >
                 <User className="h-6 w-6" />
                 <span className="text-xs mt-1">Account</span>
               </Button>
