@@ -1,8 +1,7 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Heart, Menu, Search, User } from 'lucide-react';
+import { Heart, Search, User } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
