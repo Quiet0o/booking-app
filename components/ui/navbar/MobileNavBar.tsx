@@ -1,5 +1,6 @@
 'use client';
 
+import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Heart, Search, User } from 'lucide-react';
 import {
@@ -20,40 +21,32 @@ const MobileNavBar: React.FC<MobileNavBarProps> = ({
   setLoginModalOpen,
   setRegisterModalOpen,
 }) => {
-  const viewportHeight = window.innerHeight;
-
   return (
-    <nav
-      style={{ height: `${viewportHeight}px` }}
-      className="fixed bottom-0 left-0 right-0 z-10 bg-white border-t md:hidden"
-    >
+    <>
       <div
-        className="flex flex-col"
-        style={{ minHeight: '100vh', overflow: 'auto' }}
+        className="fixed top-0 left-0 right-0 bg-white z-50"
+        style={{ paddingTop: 'env(safe-area-inset-top)' }}
       >
-        {/* Search Section */}
-        <div className="flex-grow flex flex-col px-4 pt-4 border-b">
-          {' '}
-          {/* Adjust pt for top padding */}
-          <div className="flex items-center rounded-lg shadow-md bg-white p-4">
-            <Button variant="ghost" size="icon" className="mr-2">
-              <Search className="h-6 w-6" />
-            </Button>
-            <div className="flex flex-col text-sm font-semibold">
-              <div className="mb-1">Where to?</div>
-              <div className="flex text-gray-600">
-                <span className="mr-1">Anywhere</span>
-                <span className="mx-1">•</span>
-                <span className="mr-1">Any week</span>
-                <span className="mx-1">•</span>
-                <span>Add guests</span>
-              </div>
+        <div className="flex items-center rounded-full shadow-md p-4 mx-4">
+          <Button variant="ghost" size="icon" className="mr-2">
+            <Search className="h-6 w-6" />
+          </Button>
+          <div className="flex flex-col text-sm font-semibold">
+            <div className="mb-1">Where to?</div>
+            <div className="flex text-gray-600">
+              <span className="mr-1 text-xs">Anywhere</span>
+              <span className="mx-1 text-xs">•</span>
+              <span className="mr-1 text-xs">Any week</span>
+              <span className="mx-1 text-xs">•</span>
+              <span className="mx-1 text-xs">Add guests</span>
             </div>
           </div>
         </div>
+      </div>
 
-        {/* User Menu */}
-        <div className="flex justify-between items-center px-6 py-2 border-t">
+      {/* Fixed Bottom Section */}
+      <div className="fixed bottom-0 left-0 right-0 bg-white border-t z-50">
+        <div className="flex justify-between items-center px-6 py-2">
           <Button variant="ghost" size="icon">
             <Search className="h-6 w-6" />
           </Button>
@@ -89,7 +82,7 @@ const MobileNavBar: React.FC<MobileNavBarProps> = ({
           </DropdownMenu>
         </div>
       </div>
-    </nav>
+    </>
   );
 };
 

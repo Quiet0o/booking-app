@@ -18,7 +18,7 @@ import Image from 'next/image';
 import { AuthModals } from '@/components/ui/modals/AuthModals';
 import MobileNavBar from './MobileNavBar';
 
-const Navbar = ({
+const TopNavbar = ({
   setLoginModalOpen,
   setRegisterModalOpen,
   isScrolled,
@@ -115,7 +115,7 @@ const Navbar = ({
   </header>
 );
 
-function MainLayout() {
+function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isLoginModalOpen, setLoginModalOpen] = useState<boolean>(false);
   const [isRegisterModalOpen, setRegisterModalOpen] = useState<boolean>(false);
@@ -134,7 +134,7 @@ function MainLayout() {
 
   return (
     <>
-      <Navbar
+      <TopNavbar
         setLoginModalOpen={setLoginModalOpen}
         setRegisterModalOpen={setRegisterModalOpen}
         isScrolled={isScrolled}
@@ -153,4 +153,4 @@ function MainLayout() {
   );
 }
 
-export default MainLayout;
+export default Navbar;
