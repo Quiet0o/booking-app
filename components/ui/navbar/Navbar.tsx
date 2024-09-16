@@ -91,6 +91,7 @@ const TopNavbar = ({
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem
+                  className="cursor-pointer"
                   onClick={() => {
                     setLoginModalOpen(true);
                     setRegisterModalOpen(false);
@@ -99,6 +100,7 @@ const TopNavbar = ({
                   Login
                 </DropdownMenuItem>
                 <DropdownMenuItem
+                  className="cursor-pointer"
                   onClick={() => {
                     setRegisterModalOpen(true);
                     setLoginModalOpen(false);
