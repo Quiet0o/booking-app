@@ -19,7 +19,7 @@ export function AuthModals({
     <>
       <LoginModal
         isOpen={isLoginModalOpen}
-        setIsOpen={setLoginModalOpen}
+        isModalVisible={setLoginModalOpen}
         onSwitchToRegister={() => {
           setLoginModalOpen(false);
           setRegisterModalOpen(true);
@@ -27,7 +27,7 @@ export function AuthModals({
       />
       <RegisterModal
         isOpen={isRegisterModalOpen}
-        setIsOpen={setRegisterModalOpen}
+        isModalVisible={setRegisterModalOpen}
         onSwitchToLogin={() => {
           setRegisterModalOpen(false);
           setLoginModalOpen(true);

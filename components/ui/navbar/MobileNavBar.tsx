@@ -78,6 +78,7 @@ const MobileNavBar: React.FC<MobileNavBarProps> = ({
               <DropdownMenuLabel>My Account</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuItem
+                className="cursor-pointer"
                 onClick={() => {
                   setLoginModalOpen(true);
                   setRegisterModalOpen(false);
@@ -86,6 +87,7 @@ const MobileNavBar: React.FC<MobileNavBarProps> = ({
                 Login
               </DropdownMenuItem>
               <DropdownMenuItem
+                className="cursor-pointer"
                 onClick={() => {
                   setRegisterModalOpen(true);
                   setLoginModalOpen(false);

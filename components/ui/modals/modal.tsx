@@ -19,13 +19,13 @@ import { useMediaQuery } from '@/hooks/UseMediaQuery';
 export function Modal({
   children,
   isOpen,
-  setIsOpen,
+  isModalVisible,
   title,
   description,
 }: {
   children: React.ReactNode;
   isOpen: boolean;
-  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  isModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
   title: string;
   description?: string;
 }) {
@@ -33,7 +33,7 @@ export function Modal({
 
   if (isDesktop) {
     return (
-      <Dialog open={isOpen} onOpenChange={setIsOpen}>
+      <Dialog open={isOpen} onOpenChange={isModalVisible}>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
             <DialogTitle>{title}</DialogTitle>
@@ -48,7 +48,7 @@ export function Modal({
   }
 
   return (
-    <Drawer open={isOpen} onOpenChange={setIsOpen}>
+    <Drawer open={isOpen} onOpenChange={isModalVisible}>
       <DrawerContent>
         <DrawerHeader className="text-left">
           <DrawerTitle>{title}</DrawerTitle>

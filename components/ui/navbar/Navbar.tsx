@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Menu, Search } from 'lucide-react';
+import { CircleUserRound, Menu, Search } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -81,10 +81,11 @@ const TopNavbar = ({
               <DropdownMenuTrigger asChild>
                 <Button
                   variant="outline"
-                  size="icon"
-                  className="rounded-full p-2 md:p-1 hover:shadow-md"
+                  className="rounded-full py-2 px-3 flex items-center gap-3 border-gray-300 hover:shadow-md transition"
                 >
                   <Menu className="h-5 w-5" />
+                  {/* User icon */}
+                  <CircleUserRound className="w-7 h-7 bg-gray-200 rounded-full" />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
