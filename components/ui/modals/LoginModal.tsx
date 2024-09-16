@@ -1,4 +1,5 @@
 import { Modal } from '@/components/ui/modals/modal';
+import { signIn } from 'next-auth/react';
 import {
   Card,
   CardContent,
@@ -10,9 +11,10 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import axios from 'axios';
 import { useEffect } from 'react';
 import { useForm, SubmitHandler, FieldValues } from 'react-hook-form';
+import { toast } from 'react-hot-toast';
+import { useRouter } from 'next/navigation';
 
 interface LoginModalProps {
   isOpen: boolean;
@@ -25,6 +27,8 @@ export function LoginModal({
   isModalVisible,
   onSwitchToRegister,
 }: LoginModalProps): JSX.Element {
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
@@ -37,14 +41,20 @@ export function LoginModal({
     },
   });
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    axios
-      .post('/api/login', data)
-      .then(() => {
+    signIn('credentials', {
+      ...data,
+      redirect: false,
+    }).then((callback) => {
+      if (callback?.ok) {
+        toast.success('Logged in');
+        router.refresh();
         isModalVisible(false);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+      }
+
+      if (callback?.error) {
+        console.log(callback.error);
+      }
+    });
   };
 
   useEffect(() => {
@@ -96,6 +106,7 @@ export function LoginModal({
                 <Input
                   id="password"
                   placeholder=""
+                  type="password"
                   {...register('password', {
                     required: 'Password is required',
                   })}

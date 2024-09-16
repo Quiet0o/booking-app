@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { Heart, Search, User } from 'lucide-react';
+import { Heart, Search } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,15 +11,19 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { User } from '@prisma/client';
+import { signOut } from 'next-auth/react';
 
 interface MobileNavBarProps {
   setLoginModalOpen: (open: boolean) => void;
   setRegisterModalOpen: (open: boolean) => void;
+  currentUser?: User | null;
 }
 
 const MobileNavBar: React.FC<MobileNavBarProps> = ({
   setLoginModalOpen,
   setRegisterModalOpen,
+  currentUser,
 }) => {
   return (
     <>
@@ -70,31 +74,55 @@ const MobileNavBar: React.FC<MobileNavBarProps> = ({
                 size="icon"
                 className="flex flex-col items-center hover:bg-inherit"
               >
-                <User className="h-6 w-6" />
+                <Heart className="h-6 w-6" />
                 <span className="text-xs mt-1">Account</span>
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
               <DropdownMenuLabel>My Account</DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem
-                className="cursor-pointer"
-                onClick={() => {
-                  setLoginModalOpen(true);
-                  setRegisterModalOpen(false);
-                }}
-              >
-                Login
-              </DropdownMenuItem>
-              <DropdownMenuItem
-                className="cursor-pointer"
-                onClick={() => {
-                  setRegisterModalOpen(true);
-                  setLoginModalOpen(false);
-                }}
-              >
-                Sign Up
-              </DropdownMenuItem>
+              {currentUser ? (
+                <>
+                  {' '}
+                  <DropdownMenuItem
+                    className="cursor-pointer"
+                    onClick={() => {
+                      setLoginModalOpen(true);
+                      setRegisterModalOpen(false);
+                    }}
+                  >
+                    Login
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    className="cursor-pointer"
+                    onClick={() => {
+                      setRegisterModalOpen(true);
+                      setLoginModalOpen(false);
+                    }}
+                  >
+                    Sign Up
+                  </DropdownMenuItem>
+                </>
+              ) : (
+                <>
+                  <DropdownMenuItem
+                    className="cursor-pointer"
+                    onClick={() => {
+                      console.log('account');
+                    }}
+                  >
+                    Account
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    className="cursor-pointer"
+                    onClick={() => {
+                      signOut();
+                    }}
+                  >
+                    Logout
+                  </DropdownMenuItem>
+                </>
+              )}
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
