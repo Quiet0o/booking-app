@@ -12,8 +12,9 @@ services:
     restart: always
     command: yarn dev
     environment:
-      - NODE_ENV=development 
-      - DATABASE_URL=${DATABASE_URL}
+      - NODE_ENV=development
+      - POSTGRES_PRISMA_URL=${POSTGRES_PRISMA_URL}
+      - POSTGRES_URL_NON_POOLING=${POSTGRES_URL_NON_POOLING}
       # Uncomment the next line if you’re using Windows
       - WATCHPACK_POLLING=true
     volumes:
@@ -35,21 +36,18 @@ services:
 
   database-app:
     container_name: database-app
-    image: mysql:5.7
+    image: postgres:13
     restart: always
     environment:
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     ports:
-      - '3306:3306'
+      - '5432:5432'
     expose:
-      - '3306'
+      - '5432'
     volumes:
-      - my-db:/var/lib/mysql
-
-
+      - my-db:/var/lib/postgresql/data
 # Volume for MySQL data persistence
 volumes:
   my-db: ~
