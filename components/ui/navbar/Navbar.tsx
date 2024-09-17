@@ -40,8 +40,8 @@ const Navbar: React.FC<currentUserInterface> = ({ currentUser }) => {
       <div className="block md:hidden">
         <MobileNavBar
           setLoginModalOpen={setLoginModalOpen}
-          currentUser={currentUser}
           setRegisterModalOpen={setRegisterModalOpen}
+          currentUser={currentUser}
         />
       </div>
 

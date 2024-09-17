@@ -12,6 +12,7 @@ import { Modal } from '@/components/ui/modals/modal';
 import axios from 'axios';
 import { useEffect } from 'react';
 import { useForm, SubmitHandler, FieldValues } from 'react-hook-form';
+import { signIn } from 'next-auth/react';
 
 interface RegisterModalProps {
   isOpen: boolean;
@@ -143,7 +144,14 @@ export function RegisterModal({
               <Button type="submit" className="w-full">
                 Create an account
               </Button>
-              <Button variant="outline" className="w-full">
+              <Button
+                type="button"
+                variant="outline"
+                className="w-full"
+                onClick={() => {
+                  signIn('google');
+                }}
+              >
                 Sign up with Google
               </Button>
             </div>

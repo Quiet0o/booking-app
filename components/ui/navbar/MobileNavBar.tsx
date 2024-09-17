@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { Heart, Search } from 'lucide-react';
+import { Heart, Search, CircleUserRound } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -74,7 +74,7 @@ const MobileNavBar: React.FC<MobileNavBarProps> = ({
                 size="icon"
                 className="flex flex-col items-center hover:bg-inherit"
               >
-                <Heart className="h-6 w-6" />
+                <CircleUserRound className="h-6 w-6" />
                 <span className="text-xs mt-1">Account</span>
               </Button>
             </DropdownMenuTrigger>
@@ -83,7 +83,25 @@ const MobileNavBar: React.FC<MobileNavBarProps> = ({
               <DropdownMenuSeparator />
               {currentUser ? (
                 <>
-                  {' '}
+                  <DropdownMenuItem
+                    className="cursor-pointer"
+                    onClick={() => {
+                      console.log('account');
+                    }}
+                  >
+                    Account
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    className="cursor-pointer"
+                    onClick={() => {
+                      signOut();
+                    }}
+                  >
+                    Logout
+                  </DropdownMenuItem>
+                </>
+              ) : (
+                <>
                   <DropdownMenuItem
                     className="cursor-pointer"
                     onClick={() => {
@@ -101,25 +119,6 @@ const MobileNavBar: React.FC<MobileNavBarProps> = ({
                     }}
                   >
                     Sign Up
-                  </DropdownMenuItem>
-                </>
-              ) : (
-                <>
-                  <DropdownMenuItem
-                    className="cursor-pointer"
-                    onClick={() => {
-                      console.log('account');
-                    }}
-                  >
-                    Account
-                  </DropdownMenuItem>
-                  <DropdownMenuItem
-                    className="cursor-pointer"
-                    onClick={() => {
-                      signOut();
-                    }}
-                  >
-                    Logout
                   </DropdownMenuItem>
                 </>
               )}

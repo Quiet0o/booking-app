@@ -1,4 +1,4 @@
-.env
+.env.local
 Dockerfile
 .dockerignore
 node_modules
