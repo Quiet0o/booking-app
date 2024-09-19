@@ -13,6 +13,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { User } from '@prisma/client';
 import { signOut } from 'next-auth/react';
+import Categories from './Categories';
 
 interface MobileNavBarProps {
   setLoginModalOpen: (open: boolean) => void;
@@ -46,6 +47,7 @@ const MobileNavBar: React.FC<MobileNavBarProps> = ({
             </div>
           </div>
         </div>
+        <Categories />
       </div>
 
       {/* Fixed Bottom Section */}

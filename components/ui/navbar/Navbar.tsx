@@ -10,7 +10,6 @@ import { currentUserInterface } from '@/components/ui/navbar/currentUserInterfac
 const Navbar: React.FC<currentUserInterface> = ({ currentUser }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isLoginModalOpen, setLoginModalOpen] = useState<boolean>(false);
-
   const [isRegisterModalOpen, setRegisterModalOpen] = useState<boolean>(false);
 
   useEffect(() => {
@@ -44,7 +43,6 @@ const Navbar: React.FC<currentUserInterface> = ({ currentUser }) => {
           currentUser={currentUser}
         />
       </div>
-
       <AuthModals
         isLoginModalOpen={isLoginModalOpen}
         setLoginModalOpen={setLoginModalOpen}

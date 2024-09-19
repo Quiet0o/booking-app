@@ -26,7 +26,7 @@ export default async function RootLayout({
         <Toaster />
 
         <Navbar currentUser={currentUser} />
-        {children}
+        <div className="pb-20 pt-28">{children}</div>
         <SpeedInsights />
       </body>
     </html>

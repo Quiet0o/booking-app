@@ -16,6 +16,7 @@ import Container from '../Container';
 import Image from 'next/image';
 import { User } from '@prisma/client';
 import { signOut } from 'next-auth/react';
+import Categories from './Categories';
 
 interface TopNavBarProps {
   setLoginModalOpen: (open: boolean) => void;
@@ -39,18 +40,20 @@ const TopNavbar: React.FC<TopNavBarProps> = ({
       >
         <div className="border-b">
           <Container>
-            <div className="flex justify-between items-center gap-3 md:gap-0 py-2">
+            <div className="relative w-full flex justify-between items-center gap-3 md:gap-0 py-2">
               {/* Logo (hidden on mobile) */}
-              <Image
-                alt="airbnb logo"
-                height={32}
-                width={102}
-                src="/images/logo.png"
-                className="hidden md:block cursor-pointer"
-              />
+              <div className="flex-1">
+                <Image
+                  alt="airbnb logo"
+                  height={32}
+                  width={102}
+                  src="/images/logo.png"
+                  className="hidden md:block cursor-pointer"
+                />
+              </div>
 
-              {/* Search Card for desktop */}
-              <Card className="w-full md:w-auto cursor-pointer rounded-full border hidden md:flex">
+              {/* Centered Search Card for desktop */}
+              <Card className="absolute left-1/2 transform -translate-x-1/2 w-full md:w-auto cursor-pointer rounded-full border hidden md:flex">
                 <CardContent className="p-1 flex items-center justify-between">
                   <div className="text-sm font-semibold px-4">Anywhere</div>
                   <Separator
@@ -78,7 +81,7 @@ const TopNavbar: React.FC<TopNavBarProps> = ({
               </Card>
 
               {/* User Menu (hidden on mobile) */}
-              <div className="hidden md:flex items-center gap-3">
+              <div className="flex-1 hidden md:flex justify-end items-center gap-3">
                 <Button variant="ghost" className="hidden md:block text-sm">
                   Airbnb your home
                 </Button>
@@ -141,6 +144,7 @@ const TopNavbar: React.FC<TopNavBarProps> = ({
                 </DropdownMenu>
               </div>
             </div>
+            <Categories />
           </Container>
         </div>
       </header>

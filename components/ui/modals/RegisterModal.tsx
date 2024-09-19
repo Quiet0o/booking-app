@@ -149,7 +149,7 @@ export function RegisterModal({
                 variant="outline"
                 className="w-full"
                 onClick={() => {
-                  signIn('google').then((response) => console.log(response));
+                  signIn('google');
                 }}
               >
                 Sign up with Google
