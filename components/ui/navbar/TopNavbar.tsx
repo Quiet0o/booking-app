@@ -16,7 +16,7 @@ import Container from '../Container';
 import Image from 'next/image';
 import { User } from '@prisma/client';
 import { signOut } from 'next-auth/react';
-import Categories from './Categories';
+import CategoriesWithSuspense from './Categories';
 
 interface TopNavBarProps {
   setLoginModalOpen: (open: boolean) => void;
@@ -144,7 +144,7 @@ const TopNavbar: React.FC<TopNavBarProps> = ({
                 </DropdownMenu>
               </div>
             </div>
-            <Categories />
+            <CategoriesWithSuspense />
           </Container>
         </div>
       </header>

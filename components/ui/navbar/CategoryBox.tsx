@@ -1,7 +1,7 @@
 'use client';
 
 import { useSearchParams, useRouter } from 'next/navigation';
-import { useCallback } from 'react';
+import { useCallback, Suspense } from 'react';
 import qs from 'query-string';
 
 interface CategoryBoxProps {
@@ -34,7 +34,7 @@ const CategoryBox: React.FC<CategoryBoxProps> = ({ label, icon, selected }) => {
         url: '/',
         query: updatedQuery,
       },
-      { skipNull: true },
+      { skipNull: true }
     );
 
     router.push(url);
@@ -64,4 +64,10 @@ const CategoryBox: React.FC<CategoryBoxProps> = ({ label, icon, selected }) => {
   );
 };
 
-export default CategoryBox;
+const CategoryBoxWithSuspense = (props: CategoryBoxProps) => (
+  <Suspense fallback={<div>Loading...</div>}>
+    <CategoryBox {...props} />
+  </Suspense>
+);
+
+export default CategoryBoxWithSuspense;

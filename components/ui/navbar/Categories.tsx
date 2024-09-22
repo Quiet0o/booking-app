@@ -1,8 +1,9 @@
 'use client';
 
 import { Backpack, Globe, Mountain, Pin, Plane, Tent } from 'lucide-react';
-import CategoryBox from './CategoryBox';
+import CategoryBoxWithSuspense from './CategoryBox';
 import { useSearchParams, usePathname } from 'next/navigation';
+import { Suspense } from 'react';
 
 export const categories = [
   {
@@ -80,7 +81,7 @@ const Categories = () => {
   return (
     <div className="pt-4 flex flex-row items-center justify-between overflow-x-auto">
       {categories.map((item, index) => (
-        <CategoryBox
+        <CategoryBoxWithSuspense
           key={index}
           label={item.label}
           icon={item.icon}
@@ -91,4 +92,10 @@ const Categories = () => {
   );
 };
 
-export default Categories;
+const CategoriesWithSuspense = () => (
+  <Suspense fallback={<div>Loading...</div>}>
+    <Categories />
+  </Suspense>
+);
+
+export default CategoriesWithSuspense;
