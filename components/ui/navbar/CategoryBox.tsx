@@ -34,7 +34,7 @@ const CategoryBox: React.FC<CategoryBoxProps> = ({ label, icon, selected }) => {
         url: '/',
         query: updatedQuery,
       },
-      { skipNull: true }
+      { skipNull: true },
     );
 
     router.push(url);
