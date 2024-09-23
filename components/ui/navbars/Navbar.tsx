@@ -1,11 +1,11 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { AuthModals } from '@/components/ui/modals/AuthModals';
 import MobileNavBar from './MobileNavBar';
 import TopNavbar from './TopNavbar';
-import '@/components/ui/navbar/currentUserInterface';
-import { currentUserInterface } from '@/components/ui/navbar/currentUserInterface';
+import '@/components/ui/navbars/currentUserInterface';
+import { currentUserInterface } from '@/components/ui/navbars/currentUserInterface';
+import { AllModals } from '../modals/AllModals';
 
 const Navbar: React.FC<currentUserInterface> = ({ currentUser }) => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -14,7 +14,9 @@ const Navbar: React.FC<currentUserInterface> = ({ currentUser }) => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      if (typeof window !== 'undefined') {
+        setIsScrolled(window.scrollY > 50);
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -43,7 +45,7 @@ const Navbar: React.FC<currentUserInterface> = ({ currentUser }) => {
           currentUser={currentUser}
         />
       </div>
-      <AuthModals
+      <AllModals
         isLoginModalOpen={isLoginModalOpen}
         setLoginModalOpen={setLoginModalOpen}
         isRegisterModalOpen={isRegisterModalOpen}

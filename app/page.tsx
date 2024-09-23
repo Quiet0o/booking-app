@@ -1,59 +1,67 @@
 import { Button } from '@/components/ui/button';
-export default function Home() {
+import Navbar from '@/components/ui/navbars/Navbar';
+import getCurrentUser from './actions/getCurrentUser';
+
+export default async function Home() {
+  const currentUser = await getCurrentUser();
+
   return (
     <>
-      <main className="flex min-h-screen flex-col items-center justify-between p-24">
-        <Button>test</Button>
-        <Button>test</Button>
-        <Button>test</Button>
-        <Button>test</Button>
-        <Button>test</Button>
-        <Button>test</Button>
-        <Button>test</Button>
-        <Button>test</Button>
-        <Button>test</Button>
-        <Button>test</Button>
-        <Button>test</Button>
-        <Button>test</Button>
-        <Button>test</Button>
-        <Button>test</Button>
-        <Button>test</Button>
-        <Button>test</Button>
-        <Button>test</Button>
-        <Button>test</Button>
-        <Button>test</Button>
-        <Button>test</Button>
-        <Button>test</Button>
-        <Button>test</Button>
-        <Button>test</Button>
-        <Button>test</Button>
-        <Button>test</Button>
-        <Button>test</Button>
-        <Button>test</Button>
-        <Button>test</Button>
-        <Button>test</Button>
-        <Button>test</Button>
-        <Button>test</Button>
-        <Button>test</Button>
-        <Button>test</Button>
-        <Button>test</Button>
-        <Button>test</Button>
-        <Button>test</Button>
-        <Button>test</Button>
-        <Button>test</Button>
-        <Button>test</Button>
-        <Button>test</Button>
-        <Button>test</Button>
-        <Button>test</Button>
-        <Button>test</Button>
-        <Button>test</Button>
-        <Button>test</Button>
-        <Button>test</Button>
-        <Button>test</Button>
-        <Button>test</Button>
-        <Button>test</Button>
-        <Button>test</Button>
-      </main>
+      <Navbar currentUser={currentUser} />
+      <div className="pb-20 pt-28">
+        <main className="flex min-h-screen flex-col items-center justify-between p-24">
+          <Button>test</Button>
+          <Button>test</Button>
+          <Button>test</Button>
+          <Button>test</Button>
+          <Button>test</Button>
+          <Button>test</Button>
+          <Button>test</Button>
+          <Button>test</Button>
+          <Button>test</Button>
+          <Button>test</Button>
+          <Button>test</Button>
+          <Button>test</Button>
+          <Button>test</Button>
+          <Button>test</Button>
+          <Button>test</Button>
+          <Button>test</Button>
+          <Button>test</Button>
+          <Button>test</Button>
+          <Button>test</Button>
+          <Button>test</Button>
+          <Button>test</Button>
+          <Button>test</Button>
+          <Button>test</Button>
+          <Button>test</Button>
+          <Button>test</Button>
+          <Button>test</Button>
+          <Button>test</Button>
+          <Button>test</Button>
+          <Button>test</Button>
+          <Button>test</Button>
+          <Button>test</Button>
+          <Button>test</Button>
+          <Button>test</Button>
+          <Button>test</Button>
+          <Button>test</Button>
+          <Button>test</Button>
+          <Button>test</Button>
+          <Button>test</Button>
+          <Button>test</Button>
+          <Button>test</Button>
+          <Button>test</Button>
+          <Button>test</Button>
+          <Button>test</Button>
+          <Button>test</Button>
+          <Button>test</Button>
+          <Button>test</Button>
+          <Button>test</Button>
+          <Button>test</Button>
+          <Button>test</Button>
+          <Button>test</Button>
+        </main>
+      </div>
     </>
   );
 }
