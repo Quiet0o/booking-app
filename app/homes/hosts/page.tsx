@@ -127,9 +127,9 @@ export default function Hosts() {
                     One-to-one guidance from a Superhost
                   </h3>
                   <p className="text-gray-600">
-                    We'll match you with a Superhost in your area, who'll guide
-                    you from your first question to your first guest—by phone,
-                    video call, or chat.
+                    We&apos;ll match you with a Superhost in your area,
+                    who&apos;ll guide you from your first question to your first
+                    guest—by phone, video call, or chat.
                   </p>
                 </div>
                 <div>
@@ -168,8 +168,8 @@ export default function Hosts() {
                 </div>
 
                 <p className="text-center text-lg">
-                  We've partnered with apartment buildings across the US so you
-                  can rent a place to live and host on Airbnb part-time. The
+                  We&apos;ve partnered with apartment buildings across the US so
+                  you can rent a place to live and host on Airbnb part-time. The
                   typical host earned{' '}
                   <span className="font-bold">$3650/year</span> and hosted 28
                   nights. *
