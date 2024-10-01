@@ -46,7 +46,7 @@ export default function Hosts() {
   return (
     <>
       <HostNavBar />
-      <div className="pb-20 pt-20">
+      <div className="pb-20 pt-0 sm:pt-20">
         <main className="flex-grow py-8">
           <div className="max-w-[1500px] mx-auto px-6 lg:px-10">
             <div className="grid grid-cols-1 lg:grid-cols-[1fr,1.2fr] gap-12">
@@ -111,7 +111,7 @@ export default function Hosts() {
               <h1 className="text-5xl font-bold text-center mb-12">
                 Airbnb it easily with Airbnb Setup
               </h1>
-              <div className="relative">
+              <div className="relative max-w-[1280px] mx-auto">
                 <Image
                   src="https://placehold.co/1280x490"
                   alt="Airbnb Setup"
@@ -119,38 +119,37 @@ export default function Hosts() {
                   height={490}
                   className="mx-auto"
                 />
-                {/* You would replace the placeholder with the actual image */}
-              </div>
-              <div className="grid w-[1280px] mx-auto grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-                <div>
-                  <h3 className="text-xl font-semibold mb-2">
-                    One-to-one guidance from a Superhost
-                  </h3>
-                  <p className="text-gray-600">
-                    We&apos;ll match you with a Superhost in your area,
-                    who&apos;ll guide you from your first question to your first
-                    guest—by phone, video call, or chat.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold mb-2">
-                    An experienced guest for your first booking
-                  </h3>
-                  <p className="text-gray-600">
-                    For your first booking, you can choose to welcome an
-                    experienced guest who has at least three stays and a good
-                    track record on Airbnb.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold mb-2">
-                    Specialized support from Airbnb
-                  </h3>
-                  <p className="text-gray-600">
-                    New Hosts get one-tap access to specially trained Community
-                    Support agents who can help with everything from account
-                    issues to billing support.
-                  </p>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+                  <div>
+                    <h3 className="text-lg md:text-xl font-semibold mb-2">
+                      One-to-one guidance from a Superhost
+                    </h3>
+                    <p className="text-sm md:text-base text-gray-600">
+                      We&apos;ll match you with a Superhost in your area,
+                      who&apos;ll guide you from your first question to your
+                      first guest—by phone, video call, or chat.
+                    </p>
+                  </div>
+                  <div>
+                    <h3 className="text-lg md:text-xl font-semibold mb-2">
+                      An experienced guest for your first booking
+                    </h3>
+                    <p className="text-sm md:text-base text-gray-600">
+                      For your first booking, you can choose to welcome an
+                      experienced guest who has at least three stays and a good
+                      track record on Airbnb.
+                    </p>
+                  </div>
+                  <div>
+                    <h3 className="text-lg md:text-xl font-semibold mb-2">
+                      Specialized support from Airbnb
+                    </h3>
+                    <p className="text-sm md:text-base text-gray-600">
+                      New Hosts get one-tap access to specially trained
+                      Community Support agents who can help with everything from
+                      account issues to billing support.
+                    </p>
+                  </div>
                 </div>
               </div>
               <div className="max-w-4xl mt-28 mx-auto p-6 space-y-6">
