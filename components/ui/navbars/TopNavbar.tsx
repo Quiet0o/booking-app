@@ -17,6 +17,7 @@ import Image from 'next/image';
 import { User } from '@prisma/client';
 import { signOut } from 'next-auth/react';
 import CategoriesWithSuspense from './Categories';
+import Link from 'next/link';
 
 interface TopNavBarProps {
   setLoginModalOpen: (open: boolean) => void;
@@ -82,8 +83,11 @@ const TopNavbar: React.FC<TopNavBarProps> = ({
 
               {/* User Menu (hidden on mobile) */}
               <div className="flex-1 hidden md:flex justify-end items-center gap-3">
-                <Button variant="ghost" className="hidden md:block text-sm">
-                  Airbnb your home
+                <Button
+                  variant="ghost"
+                  className="hidden md:block text-sm rounded-full"
+                >
+                  <Link href="/homes/hosts">Airbnb your home</Link>
                 </Button>
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>

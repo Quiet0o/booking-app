@@ -3,9 +3,8 @@
 import React, { useState, useEffect } from 'react';
 import MobileNavBar from './MobileNavBar';
 import TopNavbar from './TopNavbar';
-import '@/components/ui/navbars/currentUserInterface';
-import { currentUserInterface } from '@/components/ui/navbars/currentUserInterface';
 import { AllModals } from '../modals/AllModals';
+import { currentUserInterface } from './Interfaces/currentUserInterface';
 
 const Navbar: React.FC<currentUserInterface> = ({ currentUser }) => {
   const [isScrolled, setIsScrolled] = useState(false);

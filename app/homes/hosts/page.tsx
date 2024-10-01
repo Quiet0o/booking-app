@@ -2,7 +2,47 @@ import { Button } from '@/components/ui/button';
 import HostNavBar from '@/components/ui/navbars/HostNavBar';
 import { Slider } from '@/components/ui/slider';
 import { Plus, Minus, Search } from 'lucide-react';
-export default async function Hosts() {
+import Image from 'next/image';
+
+interface HostProps {
+  name: string;
+  location: string;
+  imageUrl: string;
+}
+
+const Host: React.FC<HostProps> = ({ name, location, imageUrl }) => (
+  <div className="flex flex-col items-center">
+    <Image
+      src={imageUrl}
+      alt={`${name} from ${location}`}
+      width={300}
+      height={200}
+      className="rounded-lg object-cover w-full h-48 mb-2"
+    />
+    <p className="text-sm font-semibold">{name}</p>
+    <p className="text-xs text-gray-600">{location}</p>
+  </div>
+);
+
+const HostList = [
+  {
+    name: 'Nani',
+    location: 'Resident & Host Dallas, TX',
+    imageUrl: 'https://placehold.co/200x300',
+  },
+  {
+    name: 'Jeff and Amador',
+    location: 'Residents & Hosts San Diego, CA',
+    imageUrl: 'https://placehold.co/200x300',
+  },
+  {
+    name: 'Buddy',
+    location: 'Resident & Host Denver, CO',
+    imageUrl: 'https://placehold.co/200x300',
+  },
+];
+
+export default function Hosts() {
   return (
     <>
       <HostNavBar />
@@ -54,7 +94,7 @@ export default async function Hosts() {
                 </div>
               </div>
 
-              <div className="bg-[#38ff84] rounded-2xl p-4 h-[600px] flex items-center justify-center relative">
+              <div className="bg-[#38ff84] rounded-2xl h-[610px] w-18 flex items-center justify-center relative">
                 <p className="text-lg text-gray-600">Map placeholder</p>
                 <div className="absolute bottom-6 right-6 flex flex-col gap-2">
                   <button className="bg-white p-2 rounded-full shadow-md">
@@ -66,6 +106,89 @@ export default async function Hosts() {
                 </div>
               </div>
             </div>
+
+            <section className="mt-28">
+              <h1 className="text-5xl font-bold text-center mb-12">
+                Airbnb it easily with Airbnb Setup
+              </h1>
+              <div className="relative">
+                <Image
+                  src="https://placehold.co/1280x490"
+                  alt="Airbnb Setup"
+                  width={1280}
+                  height={490}
+                  className="mx-auto"
+                />
+                {/* You would replace the placeholder with the actual image */}
+              </div>
+              <div className="grid w-[1280px] mx-auto grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+                <div>
+                  <h3 className="text-xl font-semibold mb-2">
+                    One-to-one guidance from a Superhost
+                  </h3>
+                  <p className="text-gray-600">
+                    We'll match you with a Superhost in your area, who'll guide
+                    you from your first question to your first guest—by phone,
+                    video call, or chat.
+                  </p>
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold mb-2">
+                    An experienced guest for your first booking
+                  </h3>
+                  <p className="text-gray-600">
+                    For your first booking, you can choose to welcome an
+                    experienced guest who has at least three stays and a good
+                    track record on Airbnb.
+                  </p>
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold mb-2">
+                    Specialized support from Airbnb
+                  </h3>
+                  <p className="text-gray-600">
+                    New Hosts get one-tap access to specially trained Community
+                    Support agents who can help with everything from account
+                    issues to billing support.
+                  </p>
+                </div>
+              </div>
+              <div className="max-w-4xl mt-28 mx-auto p-6 space-y-6">
+                <h1 className="text-5xl font-bold text-center">
+                  Need a place where you can host?
+                </h1>
+                <h2 className="text-5xl font-semibold text-center">
+                  Try Airbnb-friendly apartments
+                </h2>
+
+                <div className="grid mt-10 grid-cols-1 md:grid-cols-3 gap-6">
+                  {HostList.map((host) => (
+                    <Host key={host.name} {...host} />
+                  ))}
+                </div>
+
+                <p className="text-center text-lg">
+                  We've partnered with apartment buildings across the US so you
+                  can rent a place to live and host on Airbnb part-time. The
+                  typical host earned{' '}
+                  <span className="font-bold">$3650/year</span> and hosted 28
+                  nights. *
+                </p>
+
+                <p className="text-xs text-gray-600 text-center">
+                  *The typical Host earnings amount represents the median amount
+                  of earnings for Hosts in US Airbnb-friendly apartment
+                  buildings between Jan1 - Dec 31, 2023, according to internal
+                  Airbnb data for revenue earned by Hosts.
+                </p>
+
+                <div className="flex justify-center">
+                  <Button variant="outline" size="lg">
+                    Explore cities
+                  </Button>
+                </div>
+              </div>
+            </section>
           </div>
         </main>
       </div>

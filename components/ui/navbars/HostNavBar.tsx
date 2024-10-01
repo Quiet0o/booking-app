@@ -11,7 +11,7 @@ const HostNavBar = () => {
       <nav className="container mx-auto px-14">
         <div className="flex justify-between items-center h-20">
           <div className="flex-shrink-0 flex items-center">
-            <Link href="/" className="text-rose-500 text-2xl font-bold">
+            <Link href="/">
               <Image
                 src="/images/airbnb-icon.svg"
                 alt="airbnb logo"
